@@ -19,22 +19,74 @@ django admin mixin
 
 
 Модуль реализует механизм примесей (mixin) для Django admin.
+С помощью модуля можно упростить конфигурацию admin.py
 
+Применение:
+
+Если у вас есть много моделей, которые имеют повторяющиеся поля.
+С этими полями как-то надо работать в админке, например, фильтровать, искать по ним.
+То вы можете вынести этот повторяющийся блок в mixin.
 
 * Free software: MIT license
 * Documentation: https://django-admin-mixin.readthedocs.io.
 
 
+Install
+-------
+
+`pip install django-admin-mixin`
+
+Configuration
+-------------
+
+
+
+Usage
+-----
+
+Example models::
+    # models.py
+
+    class SuperModel1(models.Model):
+        created_at = models.DateTimeField(auto_now_add=True)
+        updated_at = models.DateTimeField(auto_now=True)
+        value1 = model.CharField()
+        value2 = model.FloatField()
+
+
+    class SuperModel2(models.Model):
+        created_at = models.DateTimeField(auto_now_add=True)
+        updated_at = models.DateTimeField(auto_now=True)
+        super_val1 = model.CharField()
+        super_val2 = model.FloatField()
+
+Example admin.py::
+    # admin.py
+    from django.contrib import admin
+    from super_app.models import SuperModel1, SuperModel2
+    from django_admin_mixins import MixinAdminCombiner
+
+    class TimeMixinAdmin(admin.ModelAdmin):
+        list_display = ['created_at']
+        ordering = ['-created_at']
+        list_filter = ['created_at', 'updated_at']
+
+    @admin.register(SuperModel1)
+    class SuperModel1Admin(MixinAdminCombiner):
+        mixins = [TimeMixinAdmin, ]
+        list_display = ['value1']
+
+
+    @admin.register(SuperModel2)
+    class SuperModel2Admin(MixinAdminCombiner):
+        mixins = [TimeMixinAdmin, ]
+        list_display = ['super_val1', 'super_val2']
+
+Result:
+
+<image>
+
 Features
 --------
 
 * TODO
-
-Credits
----------
-
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-
