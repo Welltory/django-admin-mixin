@@ -15,7 +15,7 @@ test_requirements = [i.strip() for i in
                      open("requirements_test.txt").readlines()]
 
 setup(
-    name='django_admin_mixin',
+    name='django-admin-mixin',
     version='0.1.0',
     description="Модуль реализует механизм примесей (mixin) для Django admin.",
     long_description=readme + '\n\n' + history,
