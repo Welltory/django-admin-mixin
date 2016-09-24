@@ -12,7 +12,7 @@ Tests for `django_admin_mixin` module.
 import sys
 import unittest
 
-from django_admin_mixin import django_admin_mixin
+from django_admin_mixin import combiner
 
 
 

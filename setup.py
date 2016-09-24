@@ -11,7 +11,8 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [i.strip() for i in open("requirements.txt").readlines()]
 
-test_requirements = [i.strip() for i in open("requirements_test.txt").readlines()]
+test_requirements = [i.strip() for i in
+                     open("requirements_test.txt").readlines()]
 
 setup(
     name='django_admin_mixin',
@@ -24,8 +25,9 @@ setup(
     packages=[
         'django_admin_mixin',
     ],
-    package_dir={'django_admin_mixin':
-                 'django_admin_mixin'},
+    package_dir={
+        'django_admin_mixin': 'django_admin_mixin'
+    },
     include_package_data=True,
     install_requires=requirements,
     license="MIT license",

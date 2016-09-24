@@ -51,22 +51,22 @@ Example models::
     class SuperModel1(models.Model):
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
-        value1 = model.CharField()
-        value2 = model.FloatField()
+        value1 = models.CharField(max_length=25)
+        value2 = models.FloatField()
 
 
     class SuperModel2(models.Model):
         created_at = models.DateTimeField(auto_now_add=True)
         updated_at = models.DateTimeField(auto_now=True)
-        super_val1 = model.CharField()
-        super_val2 = model.FloatField()
+        super_val1 = models.CharField(max_length=120)
+        super_val2 = models.FloatField()
 
 Example admin.py::
 
     # admin.py
     from django.contrib import admin
     from super_app.models import SuperModel1, SuperModel2
-    from django_admin_mixins import MixinAdminCombiner
+    from django_admin_mixin import MixinAdminCombiner
 
     class TimeMixinAdmin(admin.ModelAdmin):
         list_display = ['created_at']
