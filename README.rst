@@ -45,6 +45,7 @@ Usage
 -----
 
 Example models::
+
     # models.py
 
     class SuperModel1(models.Model):
@@ -61,6 +62,7 @@ Example models::
         super_val2 = model.FloatField()
 
 Example admin.py::
+
     # admin.py
     from django.contrib import admin
     from super_app.models import SuperModel1, SuperModel2
