@@ -16,7 +16,7 @@ test_requirements = [i.strip() for i in
 
 setup(
     name='django-admin-mixin',
-    version='0.1.0',
+    version='0.1.1',
     description="Модуль реализует механизм примесей (mixin) для Django admin.",
     long_description=readme + '\n\n' + history,
     author="Alexander Sapronov",

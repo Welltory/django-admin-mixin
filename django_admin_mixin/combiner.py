@@ -25,8 +25,10 @@ class MixinAdminCombiner(admin.ModelAdmin):
             result = self.add(
                 getattr(self, list_name, []),
                 mixin_list,
-                to_start=getattr(
-                    mixin, '{}_to_start'.format(list_name), False))
+                mixin,
+                to_start=getattr(mixin,
+                                 '{}_to_start'.format(list_name), False)
+            )
             setattr(self, list_name, result)
         return result
 
@@ -80,7 +82,7 @@ class MixinAdminCombiner(admin.ModelAdmin):
         else:
             items.append(item)
 
-    def add(self, admin_list, keys, **options):
+    def add(self, admin_list, keys, mixin, **options):
         if isinstance(admin_list, tuple):
             admin_list = list(admin_list)
         if admin_list is None:
@@ -92,7 +94,7 @@ class MixinAdminCombiner(admin.ModelAdmin):
             if isinstance(key, str):
                 if '__' in key or key.startswith('-'):
                     self._add(admin_list, key, options.get('to_start', False))
-                elif self.has_attr(key) or key == 'user':
+                elif self.has_attr(key) or key == 'user' or hasattr(mixin, key):
                     self._add(admin_list, key, options.get('to_start', False))
             else:
                 self._add(admin_list, key, options.get('to_start', False))
