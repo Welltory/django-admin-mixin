@@ -34,7 +34,9 @@ django admin mixin
 Install
 -------
 
-`pip install django-admin-mixin`
+.. code-block:: bash
+
+    pip install django-admin-mixin
 
 Configuration
 -------------
@@ -44,7 +46,9 @@ Configuration
 Usage
 -----
 
-Example models::
+Example models:
+
+.. code-block:: python
 
     # models.py
 
@@ -61,7 +65,9 @@ Example models::
         super_val1 = models.CharField(max_length=120)
         super_val2 = models.FloatField()
 
-Example admin.py::
+Example admin.py:
+
+.. code-block:: python
 
     # admin.py
     from django.contrib import admin
